@@ -5,6 +5,14 @@
 
 > Virtual DOM = Es una representacion de todos los objetos de la UI usando un objeto de JS
 
+> Separación de responsabilidades = Dividir la aplicacion en partes cin base en lo que tiene que hacer.
+
+### Componentes
+* Hacer el bind de una función en el constructor para evitar posibles problemas de memoria.
+* PureComponent implementa un metodo para validar si los props y si el estado han cambiado y solo hace el render si cambian 
+* PureComponent solo es recomendable usarlo en el componente final del arbol
+
+
 
 ## Notas
 * Todos los componentes de React deben comenzar con mayúscula
