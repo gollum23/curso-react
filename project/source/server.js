@@ -1,8 +1,7 @@
 import http from 'http';
 import React from 'react';
 import { renderToString } from 'react-dom/server'
-import { ServerRouter } from 'react-router'
-import createServerRenderContext from 'react-router/createServerRenderContext';
+import { ServerRouter, createServerRenderContext } from 'react-router'
 
 import Pages from './pages/containers/Page.jsx'
 
