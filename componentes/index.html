@@ -15,6 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.min.js"></script>
 
   <script type="text/babel">
+    // Componente puro o de UI
     function Hola(props) {
       return (
           <h1 id="Title" onClick={props.onClick}>
@@ -23,6 +24,7 @@
       );
     }
 
+    // Componentes contenedores o de estado
     class MiComponente extends React.Component {
       constructor(props) {
         super(props);
@@ -34,6 +36,36 @@
         this.handleClick = this.handleClick.bind(this);
       }
 
+      componentWillMount() {
+        console.log('El componente se va a cargar');
+      }
+
+      componentDidMount() {
+        document.addEventListener('click', this.handleClick);
+      }
+
+//      componentWillReceiveProps(nextProps) {
+//        this.setState({
+//          count: this.state.count * 2,
+//        });
+//      }
+
+      shouldComponentUpdate(nextProps, nextState) {
+        return nextState.count !== this.state.count;
+      }
+
+      componentWillUpdate() {
+        console.log('el componente se va a actualizar');
+      }
+
+      componentDidUpdate() {
+        console.log('el componente se actualizó');
+      }
+
+      componentWillUnmount() {
+        document.removeEventListener('click', this.handleClick);
+      }
+
       handleClick() {
         this.setState({
           count: this.state.count + 1,
@@ -43,9 +75,9 @@
       render() {
         return (
           <Hola
-              name={this.props.name}
-              count={this.state.count}
-              onClick={this.handleClick}
+            name={this.props.name}
+            count={this.state.count}
+            onClick={this.handleClick}
           />
         );
       }
