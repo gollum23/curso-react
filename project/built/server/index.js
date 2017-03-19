@@ -9798,9 +9798,13 @@ var _Home = __webpack_require__(96);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _About = __webpack_require__(94);
+var _Post = __webpack_require__(213);
 
-var _About2 = _interopRequireDefault(_About);
+var _Post2 = _interopRequireDefault(_Post);
+
+var _Profile = __webpack_require__(214);
+
+var _Profile2 = _interopRequireDefault(_Profile);
 
 var _Error = __webpack_require__(95);
 
@@ -9818,9 +9822,14 @@ function Pages() {
       component: _Home2.default
     }),
     _react2.default.createElement(_reactRouter.Match, {
-      pattern: '/about',
+      pattern: '/post/:id',
       exactly: true,
-      component: _About2.default
+      component: _Post2.default
+    }),
+    _react2.default.createElement(_reactRouter.Match, {
+      pattern: '/user/:id',
+      exactly: true,
+      component: _Profile2.default
     }),
     _react2.default.createElement(_reactRouter.Miss, { component: _Error2.default })
   );
@@ -9845,51 +9854,7 @@ module.exports = __webpack_require__(137);
 module.exports = require("http");
 
 /***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = __webpack_require__(18);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-class About extends _react.Component {
-  render() {
-    return _react2.default.createElement(
-      'section',
-      { name: 'About' },
-      _react2.default.createElement(
-        'h1',
-        null,
-        'About'
-      ),
-      _react2.default.createElement(
-        _reactRouter.Link,
-        { to: '/' },
-        'Go to home'
-      ),
-      _react2.default.createElement(
-        _reactRouter.Link,
-        { to: '/random' },
-        'Go to random'
-      )
-    );
-  }
-}
-
-exports.default = About;
-
-/***/ }),
+/* 94 */,
 /* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24633,6 +24598,96 @@ function requestHandler(request, response) {
 const server = _http2.default.createServer(requestHandler);
 
 server.listen(3000);
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(18);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Post extends _react.Component {
+  render() {
+    return _react2.default.createElement(
+      'section',
+      { name: 'Post' },
+      _react2.default.createElement(
+        'h1',
+        null,
+        'Post'
+      ),
+      _react2.default.createElement(
+        _reactRouter.Link,
+        { to: '/' },
+        'Go to home'
+      ),
+      _react2.default.createElement(
+        _reactRouter.Link,
+        { to: '/random' },
+        'Go to random'
+      )
+    );
+  }
+}
+
+exports.default = Post;
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(18);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Profile extends _react.Component {
+  render() {
+    return _react2.default.createElement(
+      'section',
+      { name: 'Profile' },
+      _react2.default.createElement(
+        'h1',
+        null,
+        'Profile'
+      ),
+      _react2.default.createElement(
+        _reactRouter.Link,
+        { to: '/' },
+        'Go to home'
+      ),
+      _react2.default.createElement(
+        _reactRouter.Link,
+        { to: '/random' },
+        'Go to random'
+      )
+    );
+  }
+}
+
+exports.default = Profile;
 
 /***/ })
 /******/ ]);

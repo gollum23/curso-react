@@ -6,22 +6,32 @@ import {
 } from 'react-router';
 
 import Home from './Home.jsx'
-import About from './About.jsx'
+import Post from './Post.jsx'
+import Profile from './Profile.jsx'
 import Error404 from './Error404.jsx'
 
 function Pages() {
   return (
     <main role="application">
+      {/* Article list */}
       <Match
         pattern="/"
         exactly
         component={Home}
       />
+      {/* Article detail */}
       <Match
-        pattern="/about"
+        pattern="/post/:id"
         exactly
-        component={About}
+        component={Post}
       />
+      {/* User Profile */}
+      <Match
+        pattern="/user/:id"
+        exactly
+        component={Profile}
+      />
+      {/* Error 404 */}
       <Miss component={Error404} />
     </main>
   )
