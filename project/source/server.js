@@ -1,9 +1,10 @@
 import http from 'http';
 import React from 'react';
-import { renderToString } from 'react-dom/server'
-import { ServerRouter, createServerRenderContext } from 'react-router'
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import { ServerRouter, createServerRenderContext } from 'react-router';
 
-import Pages from './pages/containers/Page.jsx'
+import Pages from './pages/containers/Page.jsx';
+import Layout from './pages/components/Layout.jsx';
 
 function requestHandler(request, response){
   const context = createServerRenderContext();
@@ -34,7 +35,14 @@ function requestHandler(request, response){
     );
   }
 
-  response.write(html);
+  response.write(
+    renderToStaticMarkup(
+      <Layout
+        title="Aplication"
+        content={html}
+      />
+    )
+  );
   response.end();
 }
 
