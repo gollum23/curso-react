@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 import Post from '../../posts/containers/Post.jsx';
-import Loading from '../../shared/containers/Loading.jsx'
+import Loading from '../../shared/components/Loading.jsx'
 import api from '../../api.js'
 
 class Profile extends Component {
