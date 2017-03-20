@@ -65,15 +65,15 @@ class Post extends Component {
   }
 }
 
-Post.defaultProps = {
-  params: {
-    id: 1,
-  },
-};
+// Post.defaultProps = {
+//   params: {
+//     id: '1',
+//   },
+// };
 
 Post.propTypes = {
   params: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
   }),
 };
 

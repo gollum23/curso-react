@@ -5265,7 +5265,7 @@ class Post extends _react.Component {
     this.state = {
       loading: true,
       user: props.user || null,
-      comments: props.comments || []
+      comments: props.comments || null
     };
   }
 
@@ -5278,8 +5278,7 @@ class Post extends _react.Component {
 
     return _asyncToGenerator(function* () {
       if (!!_this.state.user && !!_this.state.comments) return _this.setState({ loading: false });
-
-      const [user, comments] = yield Promise.all([!_this.state.user ? _api2.default.users.getSingle(_this.props.userId) : Promise.resolve(null), !_this.state.comments ? _api2.default.posts.getComments(_this.props.id) : Promise.resolve(null)]);
+      const [user, comments] = yield Promise.all([!_this.state.user ? _api2.default.users.getSingle(_this.props.userId) : Promise.resolve(null), !_this.state.comments ? _api2.default.posts.getComments(_this.props.userId) : Promise.resolve(null)]);
 
       return _this.setState({
         loading: false,
@@ -5326,15 +5325,6 @@ class Post extends _react.Component {
     );
   }
 }
-
-Post.defaultProps = {
-  id: 1,
-  userId: 1,
-  title: '',
-  body: '',
-  user: {},
-  comments: []
-};
 
 Post.propTypes = {
   id: _react.PropTypes.number,
@@ -11080,15 +11070,15 @@ class Post extends _react.Component {
   }
 }
 
-Post.defaultProps = {
-  params: {
-    id: 1
-  }
-};
+// Post.defaultProps = {
+//   params: {
+//     id: '1',
+//   },
+// };
 
 Post.propTypes = {
   params: _react.PropTypes.shape({
-    id: _react.PropTypes.number
+    id: _react.PropTypes.string
   })
 };
 
@@ -11268,7 +11258,7 @@ function Header() {
       ),
       _react2.default.createElement(
         'a',
-        { href: 'https://platzi.com', target: '_blank', className: _Header2.default.link },
+        { href: 'https://platzi.com', target: '_blank', rel: 'noopener noreferrer', className: _Header2.default.link },
         'Platzi'
       )
     )

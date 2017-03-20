@@ -13,7 +13,7 @@ class Post extends Component {
     this.state = {
       loading: true,
       user: props.user || null,
-      comments: props.comments || [],
+      comments: props.comments || null,
     };
   }
 
@@ -23,13 +23,12 @@ class Post extends Component {
 
   async initialFetch() {
     if (!!this.state.user && !!this.state.comments) return this.setState({ loading: false });
-
     const [
       user,
       comments,
     ] = await Promise.all([
       !this.state.user ? api.users.getSingle(this.props.userId) : Promise.resolve(null),
-      !this.state.comments ? api.posts.getComments(this.props.id) : Promise.resolve(null),
+      !this.state.comments ? api.posts.getComments(this.props.userId) : Promise.resolve(null),
     ]);
 
     return this.setState({
@@ -63,14 +62,6 @@ class Post extends Component {
   }
 }
 
-Post.defaultProps = {
-  id: 1,
-  userId: 1,
-  title: '',
-  body: '',
-  user: {},
-  comments: [],
-};
 
 Post.propTypes = {
   id: PropTypes.number,
