@@ -3,17 +3,17 @@ import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { ServerRouter, createServerRenderContext } from 'react-router';
 
-import Pages from './pages/containers/Page.jsx';
-import Layout from './pages/components/Layout.jsx';
+import Pages from './pages/containers/Page';
+import Layout from './pages/components/Layout';
 
-function requestHandler(request, response){
+function requestHandler(request, response) {
   const context = createServerRenderContext();
 
   let html = renderToString(
     <ServerRouter location={request.url} context={context}>
       <Pages />
-    </ServerRouter>
-  )
+    </ServerRouter>,
+  );
 
   const result = context.getResult();
 
@@ -31,7 +31,7 @@ function requestHandler(request, response){
     html = renderToString(
       <ServerRouter location={request.url} context={context}>
         <Pages />
-      </ServerRouter>
+      </ServerRouter>,
     );
   }
 
@@ -40,8 +40,8 @@ function requestHandler(request, response){
       <Layout
         title="Aplication"
         content={html}
-      />
-    )
+      />,
+    ),
   );
   response.end();
 }

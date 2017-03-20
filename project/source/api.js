@@ -31,7 +31,7 @@ const api = {
       const data = await response.json();
       return data;
     },
-  }
+  },
 };
 
-export default api
+export default api;

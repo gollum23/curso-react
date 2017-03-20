@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 function Layout(props) {
-  "use strict";
   return (
-    <html>
+    <html lang="es">
       <head>
-        <meta charSet="utf-8"/>
+        <meta charSet="utf-8" />
         <title>{props.title}</title>
         <meta
           name="viewport"
@@ -27,10 +26,20 @@ function Layout(props) {
             __html: props.content,
           }}
         />
-        <script src="http://localhost:3001/app.js"></script>
+        <script src="http://localhost:3001/app.js" />
       </body>
     </html>
-  )
+  );
 }
 
-export default Layout
+Layout.defaultProps = {
+  title: '',
+  content: '',
+};
+
+Layout.propTypes = {
+  title: PropTypes.string,
+  content: PropTypes.string,
+};
+
+export default Layout;

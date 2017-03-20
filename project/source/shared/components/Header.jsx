@@ -18,7 +18,7 @@ function Header() {
         <a href="https://platzi.com" target="_blank" className={styles.link}>Platzi</a>
       </nav>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

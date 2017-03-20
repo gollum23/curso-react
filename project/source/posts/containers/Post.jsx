@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
-import api from '../../api.js'
+import api from '../../api';
 
-import styles from './Post.css'
+import styles from './Post.css';
 
 
 class Post extends Component {
@@ -17,7 +17,11 @@ class Post extends Component {
     };
   }
 
-  async componentDidMount(){
+  componentDidMount() {
+    this.initialFetch();
+  }
+
+  async initialFetch() {
     if (!!this.state.user && !!this.state.comments) return this.setState({ loading: false });
 
     const [
@@ -28,11 +32,11 @@ class Post extends Component {
       !this.state.comments ? api.posts.getComments(this.props.id) : Promise.resolve(null),
     ]);
 
-    this.setState({
+    return this.setState({
       loading: false,
       user: user || this.state.user,
       comments: comments || this.state.comments,
-    })
+    });
   }
 
   render() {
@@ -51,21 +55,34 @@ class Post extends Component {
             <Link to={`/user/${this.state.user.id}`} className={styles.user}>
               {this.state.user.name}
             </Link>
-            <span className={styles.comments}>
-              hay {this.state.comments.length} comentarios
-            </span>
+            <span className={styles.comments}>hay {this.state.comments.length} comentarios</span>
           </div>
         )}
       </article>
-    )
+    );
   }
 }
+
+Post.defaultProps = {
+  id: 1,
+  userId: 1,
+  title: '',
+  body: '',
+  user: {},
+  comments: [],
+};
 
 Post.propTypes = {
   id: PropTypes.number,
   userId: PropTypes.number,
   title: PropTypes.string,
   body: PropTypes.string,
+  user: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  comments: PropTypes.arrayOf(
+    PropTypes.object,
+  ),
 };
 
-export default Post
+export default Post;
