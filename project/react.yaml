@@ -1,0 +1,9 @@
+session_name: react-course
+windows:
+  - window_name: React course
+    layout: tiled
+    panes:
+      - yarn run bff
+      - yarn run sfs
+      - webpack -w
+      - 
