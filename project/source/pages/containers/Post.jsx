@@ -6,6 +6,8 @@ import Comment from '../../comments/components/Comment';
 
 import api from '../../api';
 
+import styles from './Page.css';
+
 class Post extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,7 @@ class Post extends Component {
     }
 
     return (
-      <section name="Post">
+      <section name="Post" className={styles.section}>
         <PostBody
           {...this.state.post}
           user={this.state.user}
@@ -64,12 +66,6 @@ class Post extends Component {
     );
   }
 }
-
-// Post.defaultProps = {
-//   params: {
-//     id: '1',
-//   },
-// };
 
 Post.propTypes = {
   params: PropTypes.shape({
