@@ -12,12 +12,12 @@ module.exports = {
         test: /\.json$/,
         loader: 'json-loader',
       },
-      {
-        test: /\.jsx?$/,
-        loader: 'eslint-loader',
-        exclude: /(node_modules)/,
-        enforce: 'pre',
-      },
+      // {
+      //   test: /\.jsx?$/,
+      //   loader: 'eslint-loader',
+      //   exclude: /(node_modules)/,
+      //   enforce: 'pre',
+      // },
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',

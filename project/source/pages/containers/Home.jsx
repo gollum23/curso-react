@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 import Post from '../../posts/containers/Post';
 import Loading from '../../shared/components/Loading';
@@ -8,13 +9,13 @@ import Title from '../../shared/components/Title';
 import styles from './Page.css';
 import api from '../../api';
 
+import actions from '../../actions';
+
 class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      page: 1,
-      posts: [],
       loading: true,
     };
 
@@ -31,13 +32,13 @@ class Home extends Component {
   }
 
   async initialFetch() {
-    const posts = await api.posts.getList(this.state.page);
+    const posts = await api.posts.getList(this.props.page);
 
-    this.setState({
-      posts,
-      page: this.state.page + 1,
-      loading: false,
-    });
+    this.props.dispatch(
+      actions.setPost(posts),
+    );
+
+    this.setState({ loading: false });
   }
 
   handleScroll() {
@@ -53,13 +54,13 @@ class Home extends Component {
 
     return this.setState({ loading: true }, async () => {
       try {
-        const posts = await api.posts.getList(this.state.page);
+        const posts = await api.posts.getList(this.props.page);
 
-        this.setState({
-          posts: this.state.posts.concat(posts),
-          page: this.state.page + 1,
-          loading: false,
-        });
+        this.props.dispatch(
+          actions.setPost(posts),
+        );
+
+        this.setState({ loading: false });
       } catch (error) {
         console.error(error);
         this.setState({ Loading: false });
@@ -79,7 +80,7 @@ class Home extends Component {
           {this.state.loading && (
             <Loading />
           )}
-          {this.state.posts
+          {this.props.posts
             .map(post => <Post key={post.id} {...post} />)
           }
         </section>
@@ -88,4 +89,18 @@ class Home extends Component {
   }
 }
 
-export default Home;
+Home.propTypes = {
+  dispatch: PropTypes.func,
+  posts: PropTypes.arrayOf(PropTypes.object),
+  page: PropTypes.number,
+};
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts.entities,
+    page: state.posts.page,
+  };
+}
+
+
+export default connect(mapStateToProps)(Home);
